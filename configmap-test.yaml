@@ -8,18 +8,12 @@ spec:
       image:  docker.io/busybox:latest
       command: [ "/bin/sh", "-c", "env" ]
       env: 
-        - name: SPECIAL_LEVEL_KEY
+        - name: REDHAT_URL
           valueFrom:
             configMapKeyRef:
-              name: special-config 
-              key: special.how 
-        - name: SPECIAL_TYPE_KEY
-          valueFrom:
-            configMapKeyRef:
-              name: special-config 
-              key: special.type 
-              optional: true 
-          envFrom:
-          - configMapRef:
-              name: env-config 
+              name: config1
+              key: url.properties
+      envFrom:
+        - configMapRef:
+            name: config2 
   restartPolicy: Never
